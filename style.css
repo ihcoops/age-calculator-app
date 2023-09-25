@@ -1,0 +1,195 @@
+/********************************
+* General Reset
+********************************/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/********************************
+* Custom Properties
+********************************/
+
+:root {
+  --Purple: hsl(259, 100%, 65%);
+  --Light-red: hsl(0, 100%, 67%);
+  --White: hsl(0, 0%, 100%);
+  --Off-white: hsl(0, 0%, 94%);
+  --Light-grey: hsl(0, 0%, 86%);
+  --Smokey-grey: hsl(0, 1%, 44%);
+  --Off-black: hsl(0, 0%, 8%);
+}
+
+
+/********************************
+* Styling
+********************************/
+
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--Off-white);
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: var(--White);
+  padding: 40px;
+  border-radius: 20px;
+  border-bottom-right-radius: 100px;
+  margin: 40px;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+label {
+  color: var(--Smokey-grey);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 4px;
+
+}
+
+.input {
+  padding: 2px 12px;
+  font-size: 24px;
+  max-width: 120px;
+  border: 1px solid var(--Light-grey);
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.error-text {
+  color: var(--Light-red);
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.red {
+  color: var(--Light-red);
+}
+
+.red-border {
+  border-color: var(--Light-red);
+}
+
+button {
+  display: block;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  width: 80px;
+  border: none;
+  border-radius: 80px;
+  background-color: var(--Purple);
+  transition: background-color 0.2s;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+button:hover {
+  background-color: black;
+}
+
+.break {
+  translate: 0px -42px;
+  width: 75%;
+  background-color: var(--Light-grey);
+  border: none;
+  height: 1px;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 70px;
+}
+
+.purple {
+  color: var(--Purple);
+}
+
+/********************************
+* Responsiveness
+********************************/
+
+@media (max-width: 600px) {
+  button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .break {
+    display: none;
+  }
+
+
+  .card {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .input {
+    max-width: 80px;
+  }
+
+  .input-container {
+    margin-right: 10px;
+  }
+
+  h1 {
+    font-size: 44px;
+  }
+}
