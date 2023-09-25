@@ -49,7 +49,7 @@ function checkInput() {
   }
 
   if (month.value) {
-    if (month.value > 12 || month.value < 0 || month.value % 1 !== 0) {
+    if (month.value > 12 || month.value <  1 || month.value % 1 !== 0) {
       monthBool = false;
     }
     else {
