@@ -23,11 +23,20 @@ export function calculate(curDay, curMonth, curYear, dayVal, monthVal, yearVal) 
 
 function display(finalYear, finalMonth, finalDay, run) {
   let dayVal = parseInt(document.querySelector('.js-day').innerHTML);
-  if (!dayVal) dayVal = 0;
+  if (!dayVal) {
+    dayVal = 0;
+    document.querySelector('.js-day').innerHTML = dayVal;
+  }
   let monthVal = parseInt(document.querySelector('.js-month').innerHTML);
-  if (!monthVal) monthVal = 0;
+  if (!monthVal) {
+    monthVal = 0;
+    document.querySelector('.js-month').innerHTML = monthVal;
+  }
   let yearVal = parseInt(document.querySelector('.js-year').innerHTML);
-  if (!yearVal) yearVal = 0;
+  if (!yearVal) {
+    yearVal = 0;
+    document.querySelector('.js-year').innerHTML = yearVal;
+  }
   if (dayVal < finalDay) {
     dayVal++;
     document.querySelector('.js-day').innerHTML = dayVal;
@@ -42,6 +51,5 @@ function display(finalYear, finalMonth, finalDay, run) {
   }
   if (dayVal === finalDay && monthVal === finalMonth && yearVal === finalYear) {
     clearInterval(run);
-    console.log("hello");
   }
 }
