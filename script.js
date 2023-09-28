@@ -36,6 +36,7 @@ year.addEventListener('keyup', () => {
 
 function checkInput() {
   if (day.value) {
+    console.log(day.value);
     if (day.value > 31 || day.value < 1 || day.value % 1 !== 0) {
       dayBool = false;
     }
@@ -86,22 +87,27 @@ function checkValidDate() {
 
   //leap year februaries
   if (yearInt % 4 === 0 && monthInt === 2 && dayInt > 28) {
+    validBool = false;
     invalidDate(false);
   }
   //regular february
-  else if (yearInt % 4 === 0 && monthInt === 2 && dayInt > 29) {
+  else if (monthInt === 2 && dayInt > 29) {
+    validBool = false;
     invalidDate(false);
   }
   //30 day months
   else if (shortMonths.includes(monthInt) && dayInt > 30) {
+    validBool = false;
     invalidDate(false);
   }
   //making sure date is in the past
   else if (yearInt === curYear) {
     if (monthInt > curMonth) {
+      validBool = false;
       invalidDate(false);
     }
     else if (monthInt === curMonth && dayInt > curDay) {
+      validBool = false;
       invalidDate(false);
     }
   }
