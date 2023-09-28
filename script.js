@@ -57,7 +57,7 @@ function checkFilledDay() {
   if (!day.value) {
     if (submittedDay) {
       dayErrorText.innerHTML = "required field";
-      dayError(false);
+      dayError(true);
     }
   }
 }
@@ -66,7 +66,7 @@ function checkFilledMonth() {
   if (!month.value) {
     if (submittedMonth) {
       monthErrorText.innerHTML = "required field";
-      monthError(false);
+      monthError(true);
     }
   }
 }
@@ -75,7 +75,7 @@ function checkFilledYear() {
   if (!year.value) {
     if (submittedYear) {
       yearErrorText.innerHTML = "required field";
-      yearError(false);
+      yearError(true);
     }
   }
 }
@@ -93,7 +93,7 @@ function checkValidDay() {
   else {
     validDay = true;
   }
-  dayError(validDay);
+  dayError(!validDay);
 }
 
 function checkValidMonth() {
@@ -108,7 +108,7 @@ function checkValidMonth() {
   else {
     validMonth = true;
   }
-  monthError(validMonth);
+  monthError(!validMonth);
 }
 
 function checkValidYear() {
@@ -123,11 +123,11 @@ function checkValidYear() {
   else {
     validYear = true;
   }
-  yearError(validYear);
+  yearError(!validYear);
 }
 
 function dayError(boolean) {
-  if (!boolean) {
+  if (boolean) {
     document.querySelector("label[for=day]").classList.add('red');
     document.querySelector("#day").classList.add('red-border');
   }
@@ -139,7 +139,7 @@ function dayError(boolean) {
 }
 
 function monthError(boolean) {
-  if (!boolean) {
+  if (boolean) {
     document.querySelector("label[for=month]").classList.add('red');
     document.querySelector("#month").classList.add('red-border');
   }
@@ -151,7 +151,7 @@ function monthError(boolean) {
 }
 
 function yearError(boolean) {
-  if (!boolean) {
+  if (boolean) {
     document.querySelector("label[for=year]").classList.add('red');
     document.querySelector("#year").classList.add('red-border');
   }
@@ -201,9 +201,9 @@ function checkValidDate() {
   else {
     dayErrorText.innerHTML = 'invalid date';
   }
-  dayError(validDate);
-  monthError(validDate);
-  yearError(validDate);
+  dayError(!validDate);
+  monthError(!validDate);
+  yearError(!validDate);
 }
 
 function clearDisplay() {
