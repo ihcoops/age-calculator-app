@@ -96,8 +96,11 @@ input[type="number"]::-webkit-inner-spin-button {
   display: none;
 }
 
-textarea:focus,
-input:focus {
+.no-outline:focus {
+  outline:none;
+}
+
+.focus-outline:focus {
   outline-style: solid;
   outline-width: 1px;
   outline-color: var(--Purple);

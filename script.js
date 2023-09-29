@@ -1,4 +1,5 @@
 import { calculate } from "./calculate.js";
+import { dayError, monthError, yearError } from "./error-states.js";
 
 const form = document.getElementById("frm");
 const day = form.elements[0];
@@ -23,23 +24,42 @@ let submittedDay = false;
 let submittedMonth = false;
 let submittedYear = false;
 
+//months with 30 days
 const shortMonths = [4, 6, 9, 11];
 
 day.addEventListener('keyup', () => {
   submittedDay = false;
   checkInput();
-})
+});
 
 month.addEventListener('keyup', () => {
   submittedMonth = false;
   checkInput();
-})
+});
 
 year.addEventListener('keyup', () => {
   submittedYear = false;
   checkInput();
-})
+});
 
+const submitButton = document.querySelector('.js-submit');
+
+submitButton.addEventListener(('click'), () => {
+  submittedDay = true;
+  submittedMonth = true;
+  submittedYear = true;
+  checkFilledDay();
+  checkFilledMonth();
+  checkFilledYear();
+  if (day.value && month.value && year.value && validDay && validMonth && validYear && validDate) {
+    calculate(curDay, curMonth, curYear, day.value, month.value, year.value);
+  }
+});
+
+
+/**
+ * Every time a key is pressed this function clears whatever was displayed previously and checks the new input
+ */
 function checkInput() {
   clearDisplay();
   checkValidDay();
@@ -56,7 +76,7 @@ function checkInput() {
 function checkFilledDay() {
   if (!day.value) {
     if (submittedDay) {
-      dayErrorText.innerHTML = "required field";
+      dayErrorText.innerHTML = "This is a required field";
       dayError(true);
     }
   }
@@ -65,7 +85,7 @@ function checkFilledDay() {
 function checkFilledMonth() {
   if (!month.value) {
     if (submittedMonth) {
-      monthErrorText.innerHTML = "required field";
+      monthErrorText.innerHTML = "This is a required field";
       monthError(true);
     }
   }
@@ -74,7 +94,7 @@ function checkFilledMonth() {
 function checkFilledYear() {
   if (!year.value) {
     if (submittedYear) {
-      yearErrorText.innerHTML = "required field";
+      yearErrorText.innerHTML = "This is a required field";
       yearError(true);
     }
   }
@@ -86,7 +106,7 @@ function checkValidDay() {
     let dayInt = parseInt(day.value);
     if (dayInt > 31 || dayInt < 1) {
       validDay = false;
-      dayErrorText.innerHTML = 'must be a valid day';
+      dayErrorText.innerHTML = 'Must be a valid day';
     }
     else validDay = true;
   }
@@ -101,7 +121,7 @@ function checkValidMonth() {
     let monthInt = parseInt(month.value);
     if (monthInt > 12 || monthInt < 1) {
       validMonth = false;
-      monthErrorText.innerHTML = 'must be a valid month';
+      monthErrorText.innerHTML = 'Must be a valid month';
     }
     else validMonth = true;
   }
@@ -116,7 +136,7 @@ function checkValidYear() {
     let yearInt = parseInt(year.value);
     if (yearInt > 2023 || yearInt < 0) {
       validYear = false;
-      yearErrorText.innerHTML = 'must be a valid year';
+      yearErrorText.innerHTML = 'Must be in the past';
     }
     else validYear = true;
   }
@@ -124,42 +144,6 @@ function checkValidYear() {
     validYear = true;
   }
   yearError(!validYear);
-}
-
-function dayError(boolean) {
-  if (boolean) {
-    document.querySelector("label[for=day]").classList.add('red');
-    document.querySelector("#day").classList.add('red-border');
-  }
-  else {
-    dayErrorText.innerHTML = '';
-    document.querySelector("label[for=day]").classList.remove('red');
-    document.querySelector("#day").classList.remove('red-border');
-  }
-}
-
-function monthError(boolean) {
-  if (boolean) {
-    document.querySelector("label[for=month]").classList.add('red');
-    document.querySelector("#month").classList.add('red-border');
-  }
-  else {
-    monthErrorText.innerHTML = '';
-    document.querySelector("label[for=month]").classList.remove('red');
-    document.querySelector("#month").classList.remove('red-border');
-  }
-}
-
-function yearError(boolean) {
-  if (boolean) {
-    document.querySelector("label[for=year]").classList.add('red');
-    document.querySelector("#year").classList.add('red-border');
-  }
-  else {
-    yearErrorText.innerHTML = '';
-    document.querySelector("label[for=year]").classList.remove('red');
-    document.querySelector("#year").classList.remove('red-border');
-  }
 }
 
 function checkValidDate() {
@@ -199,7 +183,7 @@ function checkValidDate() {
     dayErrorText.innerHTML = '';
   }
   else {
-    dayErrorText.innerHTML = 'invalid date';
+    dayErrorText.innerHTML = 'Must be a valid date';
   }
   dayError(!validDate);
   monthError(!validDate);
@@ -211,19 +195,4 @@ function clearDisplay() {
   document.querySelector('.js-month').innerHTML = "--";
   document.querySelector('.js-year').innerHTML = "--";
 }
-
-
-const submitButton = document.querySelector('.js-submit');
-
-submitButton.addEventListener(('click'), () => {
-  submittedDay = true;
-  submittedMonth = true;
-  submittedYear = true;
-  checkFilledDay();
-  checkFilledMonth();
-  checkFilledYear();
-  if (day.value && month.value && year.value && validDay && validMonth && validYear && validDate) {
-    calculate(curDay, curMonth, curYear, day.value, month.value, year.value);
-  }
-});
 
