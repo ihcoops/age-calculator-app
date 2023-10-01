@@ -20,3 +20,5 @@ Users should be able to:
 ### Link
 
 - Live Site URL: [Live Site](https://ihcoops.github.io/age-calculator-app/)
+
+![Screenshot](/screenshot.jpg?raw=true "Screenshot")
